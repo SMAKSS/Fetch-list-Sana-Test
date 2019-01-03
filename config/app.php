@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        sanaTest\Providers\AppServiceProvider::class,
+        sanaTest\Providers\AuthServiceProvider::class,
+        // sanaTest\Providers\BroadcastServiceProvider::class,
+        sanaTest\Providers\EventServiceProvider::class,
+        sanaTest\Providers\RouteServiceProvider::class,
 
     ],
 
