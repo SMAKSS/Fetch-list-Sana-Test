@@ -37,9 +37,15 @@ class formHandling extends Controller
             'address' => ['required', 'min:5' , 'max:255'],
         ]);
 
-        $response = $this->postDataToAPI($attributes);
+        $connection = $this->is_connected();
 
-        return back()->with('message', 'Thank you for your consideration, your message submitted successfully! Your submitted address is' .$response);
+        if ($connection){
+            $response = $this->postDataToAPI($attributes);
+
+            return back()->with('message', 'Thank you for your consideration, your message submitted successfully! Your submitted address is' .$response);
+        } else{
+            return view('exceptions.503');
+        }
     }
 
     /**

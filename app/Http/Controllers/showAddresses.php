@@ -18,11 +18,14 @@ class showAddresses extends Controller
     public function index()
     {
         $client = new Client();
-        try {
+
+        $connection = $this->is_connected();
+
+        if ($connection) {
             $response = $client->get('http://dev.achareh.ir/api/karfarmas/address',
                 ['auth' => ['karfarma_test', '12345678']]);
             return view('addresses', ['addresses' => json_decode($response->getBody())]);
-        } catch (ClientException $e){
+        } else {
             return view('exceptions.503');
         }
     }
