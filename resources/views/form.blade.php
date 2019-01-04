@@ -9,11 +9,9 @@
 
 @section('title', __('form'))
 
-@section('extra-packages')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" type="text/css">
-@endsection
-
 @section('heading', __('Register'))
+
+@section('paragraph', __('Please fill the following information.'))
 
 @section('image')
     <div style="background-image: url({{ asset('/svg/403.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
@@ -29,59 +27,169 @@
             <label class="label" for="forename">Forename</label>
 
             <div class="control">
-                <p class="control has-icons-left has-icons-right">
-                    <input type="text" class="input {{ $errors->has('forename') ? 'is-danger' : '' }}" name="forename" placeholder="forename" required value="{{ old('forename') }}">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-justify"></i>
-                    </span>
-                </p>
-            </div>
+                <input type="text" class="input {{ $errors->has('forename') ? 'is-danger' : '' }}" name="forename" placeholder="John" required value="{{ old('forename') }}">
 
-            @if($errors->has('forename'))
-                <p class="help is-danger">
-                    forename field is required (min:5, max:30)
-                </p>
-            @endif
-
-        </div>
-
-        <div class="field">
-
-            <label class="label" for="email">Email</label>
-
-            <div class="control">
-                <p class="control has-icons-left has-icons-right">
-                    <input type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" placeholder="example@FitPurchase.com" required value="{{ old('email') }}">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                </p>
-            </div>
-
-            @if($errors->has('email'))
-                <p class="help is-danger">
-                    Email field is required and must should something like "example@FitPurchase.com"
-                </p>
-            @endif
-
-        </div>
-
-        <div class="field">
-
-            <label class="label" for="description">Description</label>
-
-            <div class="control">
-                <textarea type="text" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="Write what you want!" required>{{ old('description') }}</textarea>
-
-                @if($errors->has('description'))
+                @if($errors->has('forename'))
                     <p class="help is-danger">
-                        Description field is required (min:10, max:255)
+                        forename field is required (min:3, max:255)
                     </p>
                 @endif
 
             </div>
 
         </div>
+
+        <div class="field">
+
+            <label class="label" for="surname">Surname</label>
+
+            <div class="control">
+                <input type="text" class="input {{ $errors->has('surname') ? 'is-danger' : '' }}" name="surname" placeholder="Doe" value="{{ old('surname') }}" required>
+
+                @if($errors->has('surname'))
+                    <p class="help is-danger">
+                        Surname field is required (min:3, max:255)
+                    </p>
+                @endif
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label class="label" for="gender">Gender</label>
+
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="gender" value="Male" @if(old('gender') === 'male') checked @endif>
+                    Male
+                </label>
+                <label class="radio">
+                    <input type="radio" name="gender" value="Female" @if(old('gender') === 'female') checked @endif>
+                    Female
+                </label>
+
+                @if($errors->has('gender'))
+                    <p class="help is-danger">
+                        Gender type is required
+                    </p>
+                @endif
+
+            </div>
+        </div>
+
+
+        <div class="field">
+
+            <label class="label" for="mobileNumber">Mobile Number</label>
+
+            <div class="control">
+                <p class="control has-icons-left has-icons-right">
+                    <input type="text" class="input {{ $errors->has('mobileNumber') ? 'is-danger' : '' }}" name="mobileNumber" placeholder="0 - - - - - - - - - - (11 digits)" value="{{ old('mobileNumber') }}" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-mobile-alt"></i>
+                    </span>
+                </p>
+
+                @if($errors->has('mobileNumber'))
+                    <p class="help is-danger">
+                        Mobile Number field is required (min:11, max:11)
+                    </p>
+                @endif
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label class="label" for="phoneNumber">Phone Number</label>
+
+            <div class="control">
+                <p class="control has-icons-left has-icons-right">
+                    <input type="text" class="input {{ $errors->has('phoneNumber') ? 'is-danger' : '' }}" name="phoneNumber" placeholder="country code - - - - - - - -" value="{{ old('phoneNumber') }}" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-phone-volume"></i>
+                    </span>
+                </p>
+
+                @if($errors->has('phoneNumber'))
+                    <p class="help is-danger">
+                        Phone Number field is required (min:11, max:11)
+                    </p>
+                @endif
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label class="label" for="address">Address</label>
+
+            <div class="control">
+                <p class="control has-icons-left has-icons-right">
+                    <input type="text" class="input {{ $errors->has('address') ? 'is-danger' : '' }}" name="address" placeholder="350 5th Ave New York, NY 10018" value="{{ old('address') }}" required>
+                    <span class="icon is-small is-left">
+                            <i class="fas fa-map-marked-alt"></i>
+                    </span>
+                </p>
+
+                @if($errors->has('address'))
+                    <p class="help is-danger">
+                        Address field is required (min:5, max:255)
+                    </p>
+                @endif
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <p class="help">
+                Please indicate your exact location below:
+            </p>
+
+            <div class="control">
+                <div id="mapid"></div>
+            </div>
+
+        </div>
+
+            <div class="field">
+
+                <label class="label" for="lat">Latitude</label>
+
+                <div class="control">
+                    <input type="text" class="input {{ $errors->has('lat') ? 'is-danger' : '' }}" name="lat" id="lat" placeholder="35.6943900" value="{{ old('lat') }}" required>
+
+                    @if($errors->has('lat'))
+                        <p class="help is-danger">
+                            Latitude is required
+                        </p>
+                    @endif
+
+                </div>
+
+            </div>
+
+            <div class="field">
+                <label class="label" for="lng">Longitude</label>
+
+                <div class="control">
+                    <input type="text" class="input {{ $errors->has('lng') ? 'is-danger' : '' }}" name="lng" id="lng" placeholder="51.4215100" value="{{ old('lng') }}" required>
+
+                    @if($errors->has('lng'))
+                        <p class="help is-danger">
+                            Longitude is required
+                        </p>
+                    @endif
+
+                </div>
+
+            </div>
 
         <div class="field">
 
@@ -100,10 +208,9 @@
             <div class="control">
                 <button type="submit" class="button is-link" style="border-radius: 3px;">Submit</button>
             </div>
-            <a href="{{ url('/') }}" class="control button is-text">
-                {{ __('Go Home') }}
+            <a href="{{ url('/addresses') }}" class="control button is-text">
+                {{ __('Go to Address List') }}
             </a>
         </div>
-
     </form>
 @endsection

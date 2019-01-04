@@ -12,3 +12,5 @@
 */
 
 Route::resource('/', 'formHandling');
+
+Route::resource('/addresses', 'showAddresses');

@@ -2,7 +2,9 @@
 
 namespace sanaTest\Http\Controllers;
 
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use \GuzzleHttp\Client;
 
 class formHandling extends Controller
 {
@@ -17,16 +19,6 @@ class formHandling extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -34,51 +26,46 @@ class formHandling extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'forename' => ['required', 'min:3', 'max:255'],
+            'surname' => ['required', 'min:3', 'max:255'],
+            'gender' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+            'mobileNumber' => ['required', 'min:11', 'max:11'],
+            'phoneNumber' => ['required', 'min:11', 'max:11'],
+            'address' => ['required', 'min:5' , 'max:255'],
+        ]);
+
+        $response = $this->postDataToAPI($attributes);
+
+        return back()->with('message', 'Thank you for your consideration, your message submitted successfully! Your submitted address is' .$response);
     }
 
     /**
-     * Display the specified resource.
+     * Send Data Through API.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $attributes array
+     * @return mixed
      */
-    public function show($id)
+    public function postDataToAPI($attributes)
     {
-        //
-    }
+        $client = new Client();
+            $response = $client->post('http://dev.achareh.ir/api/karfarmas/address', [
+                    'headers' => ['Content-type' => 'application/json'],
+                    'auth' => ['karfarma_test', '12345678'],
+                    'json' => ['region' => 1,
+                        'address' => $attributes['address'],
+                        'lat' => $attributes['lat'],
+                        'lng' => $attributes['lng'],
+                        'coordinate_mobile' => $attributes['mobileNumber'],
+                        'coordinate_phone_number' => $attributes['phoneNumber'],
+                        'first_name' => $attributes['forename'],
+                        'last_name' => $attributes['surname'],
+                        'gender' => $attributes['gender']]
+                ]
+            );
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $response->getBody();
     }
 }

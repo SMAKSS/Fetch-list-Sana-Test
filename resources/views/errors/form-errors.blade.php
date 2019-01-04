@@ -6,7 +6,7 @@
  * Time: 2:14 PM
  */?>
 @if($errors->any())
-    <div class="notification is-danger">
+    <div class="notification is-danger" style="font-size: 15px;">
         <ul>
             @foreach($errors->all() as $error)
                 <li>
