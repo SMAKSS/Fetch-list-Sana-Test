@@ -56,22 +56,37 @@ class formHandling extends Controller
      */
     public function postDataToAPI($attributes)
     {
+        $jsonData = $this->makeJsonData($attributes);
+
         $client = new Client();
             $response = $client->post('http://dev.achareh.ir/api/karfarmas/address', [
                     'headers' => ['Content-type' => 'application/json'],
                     'auth' => ['karfarma_test', '12345678'],
-                    'json' => ['region' => 1,
-                        'address' => $attributes['address'],
-                        'lat' => $attributes['lat'],
-                        'lng' => $attributes['lng'],
-                        'coordinate_mobile' => $attributes['mobileNumber'],
-                        'coordinate_phone_number' => $attributes['phoneNumber'],
-                        'first_name' => $attributes['forename'],
-                        'last_name' => $attributes['surname'],
-                        'gender' => $attributes['gender']]
+                    'body' => $jsonData
                 ]
             );
 
         return $response->getBody();
+    }
+
+    /**
+     * @param $attributes array
+     * @return false|string
+     */
+    public function makeJsonData($attributes)
+    {
+        $data = array(
+            'region' => 1,
+            'address' => $attributes['address'],
+            'lat' => $attributes['lat'],
+            'lng' => $attributes['lng'],
+            'coordinate_mobile' => $attributes['mobileNumber'],
+            'coordinate_phone_number' => $attributes['phoneNumber'],
+            'first_name' => $attributes['forename'],
+            'last_name' => $attributes['surname'],
+            'gender' => $attributes['gender']
+        );
+
+        return json_encode($data);
     }
 }
