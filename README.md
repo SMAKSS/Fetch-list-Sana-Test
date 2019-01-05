@@ -9,5 +9,5 @@ Requirement:
 `Composer, Laravel 5.7.*, Guzzle, Apache, Including Cacert.perm if you are using LocalHost`
 
 Screen Shots:
-![alt text](https://github.com/SMAliKSS/sanaTest/tree/master/public/screenshot/addresses.png)
-![alt text](https://github.com/SMAliKSS/sanaTest/tree/master/public/screenshot/register.png)
+![Register](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/addresses.png),
+![Addresses](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/register.png)
