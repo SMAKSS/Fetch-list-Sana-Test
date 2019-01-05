@@ -10,8 +10,8 @@ Project ran on English language totally, in this project for simplicity we use *
 
 **Screen Shots:**
 
-_Here is a register page:_
+_Here is the register page:_
 ![Register](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/register.png)
 
-_And here is address page:_
+_And here is the address page:_
 ![Addresses](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/addresses.png)
