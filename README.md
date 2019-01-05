@@ -5,9 +5,13 @@ The target of the project is to communicating with apis with post and get reques
 
 Project ran on English language totally, in this project for simplicity we use **Bulma css framework**, **Leaflet** map integration, and also **Fontawesome** for using Leaflet we also needed to use jQuery as well.
 
-Requirement:
+**Requirement:**
 `Composer, Laravel 5.7.*, Guzzle, Apache, Including Cacert.perm if you are using LocalHost`
 
-Screen Shots:
+**Screen Shots:**
+
+_Here is a register page:_
 ![Register](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/register.png)
+
+_And here is address page:_
 ![Addresses](https://github.com/SMAliKSS/sanaTest/blob/master/public/screenshots/addresses.png)
